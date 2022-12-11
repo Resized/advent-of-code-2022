@@ -71,3 +71,12 @@ func SortString(s string) string {
 	sort.Sort(sortRunes(r))
 	return string(r)
 }
+
+func ContainsRune(s string, r rune) bool {
+	for _, c := range s {
+		if c == r {
+			return true
+		}
+	}
+	return false
+}
