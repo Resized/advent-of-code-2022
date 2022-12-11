@@ -34,22 +34,20 @@ func calcPriority(c rune) int {
 }
 
 func findCommonChar(line1 string, line2 string, line3 string) rune {
-	line1 = u.SortString(line1)
-	line2 = u.SortString(line2)
-	line3 = u.SortString(line3)
-	line1Index := 0
-	line2Index := 0
-	line3Index := 0
-
-	for {
-		if line1[line1Index] == line2[line2Index] && line2[line2Index] == line3[line3Index] {
-			return rune(line1[line1Index])
-		} else if line1[line1Index] < line2[line2Index] {
-			line1Index++
-		} else if line2[line2Index] < line3[line3Index] {
-			line2Index++
-		} else {
-			line3Index++
+	var charMap = make(map[byte]bool)
+	var charMap2 = make(map[byte]bool)
+	for i := 0; i < len(line1); i++ {
+		charMap[line1[i]] = true
+	}
+	for i := 0; i < len(line2); i++ {
+		if charMap[line2[i]] {
+			charMap2[line2[i]] = true
 		}
 	}
+	for i := 0; i < len(line3); i++ {
+		if charMap2[line3[i]] {
+			return rune(line3[i])
+		}
+	}
+	return ' '
 }

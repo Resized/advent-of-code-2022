@@ -80,3 +80,10 @@ func ContainsRune(s string, r rune) bool {
 	}
 	return false
 }
+
+type Node struct {
+	Name     string
+	Val      int
+	Parent   *Node
+	Children []*Node
+}
