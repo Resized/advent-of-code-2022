@@ -1,8 +1,10 @@
 package utilities
 
 import (
+	"bufio"
 	"os"
 	"sort"
+	"strings"
 )
 
 type Stack[T any] []T
@@ -34,6 +36,14 @@ func ReadFile(path string) []byte {
 	data, err := os.ReadFile(path)
 	Check(err)
 	return data
+}
+
+func ScannerFromFile(path string) *bufio.Scanner {
+	data, err := os.ReadFile(path)
+	Check(err)
+	s := string(data)
+	scanner := bufio.NewScanner(strings.NewReader(s))
+	return scanner
 }
 
 func Check(e error) {

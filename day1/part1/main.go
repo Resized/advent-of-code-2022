@@ -1,18 +1,17 @@
 package main
 
 import (
+	u "advent-of-code-2022/utilities"
 	"strconv"
-	"strings"
 )
-import u "advent-of-code-2022/utilities"
 
 func main() {
-	data := u.ReadFile("day1/input")
+	scanner := u.ScannerFromFile("day1/input")
 	most := 0
 	current := 0
-	s := string(data)
 
-	for _, line := range strings.Split(s, "\r\n") {
+	for scanner.Scan() {
+		line := scanner.Text()
 		if line == "" {
 			if current > most {
 				most = current
